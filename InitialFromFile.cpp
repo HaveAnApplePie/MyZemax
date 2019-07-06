@@ -6,7 +6,7 @@ void initial(struct Ray*Ray0 , double Radius[], double Distance[], double Re_Ind
 	int k,i;
 	i = 0;
 
-	Ray0->surface_number = -1;
+	Ray0->now_surface_number = -1;
 	Ray0->Wavelen = D_RAY;
 
 	char Inputdatas[200];
@@ -23,6 +23,7 @@ void initial(struct Ray*Ray0 , double Radius[], double Distance[], double Re_Ind
 	fscanf(fw,"%f",&Ray0->Y0_W0);						//读入初始物高Y0或半视场角W
 
 	fscanf(fw,"%d",&k);
+	Ray0->all_surface_number = k - 1;
 
 	for (i = 0; i < k; i++)								//依次读入所有的r值（共k个）
 	{
