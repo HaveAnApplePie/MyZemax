@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void initial(struct Ray*Ray0 , int Radius[], int Distance[], int Re_Index[])
+void initial(struct Ray*Ray0 , double Radius[], double Distance[], double Re_Index[])
 {
 	int k,i;
 	i = 0;
