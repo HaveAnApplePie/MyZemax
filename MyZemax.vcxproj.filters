@@ -29,10 +29,10 @@
     <ClCompile Include="Paraxial.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="InitialFromFile.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Initial.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -144,7 +144,7 @@
     <ClInclude Include="Ray_Point.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="InitialFromFile.cpp" />
+    <ClCompile Include="Initial.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Paraxial.cpp" />
   </ItemGroup>

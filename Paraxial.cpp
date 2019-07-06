@@ -56,14 +56,19 @@ Ray* Paraxial_single_surface(struct Ray *ray_in,double Radius[],double Distance[
 		d = 0;
 
 	ray_out = *ray_in;
+
 //===========公式计算===========
-	i1 = (l1 - r) / r * u1;
+	if (ray_in->IsInfinite == true && k == 0)
+		i1 = ray_in->U0_D0 / 2 / r;
+	else
+		i1 = (l1 - r) / r * u1;
 	i2 = n1 / n2 * i1;
 	u2 = i1 + u1 - i2;
 	l2 = r + r * i2 / u2;
 //===========过渡公式===========
 	ray_out.Ln = l2 - d;
 	ray_out.Un = u2;
+	ray_out.now_surface_number++;
 
 	*ray_in = ray_out;
 
@@ -74,7 +79,8 @@ Ray* Paraxial_single_surface(struct Ray *ray_in,double Radius[],double Distance[
 
 void Paraxial_calculation(struct Ray *ray0, double Radius[], double Distance[], double Re_Index[]) {
 	int i,j,k,n;
-	Ray RayFPL,RaySPL,*Raycal;
+	double f_image,l_F_image,l_H_image;
+	Ray RayFPL,RaySPL,*Raycal;	//Raycal是用于计算的光线
 
 //=============初始化==========
 	n = ray0->all_surface_number;
@@ -86,11 +92,34 @@ void Paraxial_calculation(struct Ray *ray0, double Radius[], double Distance[], 
 	for (i = 0;i <= ray0->all_surface_number;i++) {
 		Raycal = Paraxial_single_surface(Raycal, Radius, Distance, Re_Index);
 	}
-
+	l_F_image = Raycal->Ln;
 //============第二近轴光=========
 	Raycal = &RaySPL;
 	for (i = 0;i <= ray0->all_surface_number;i++) {
 		Raycal = Paraxial_single_surface(Raycal, Radius, Distance, Re_Index);
 	}
+
+//============数据处理==========
+//1.焦距计算
+	Raycal->now_surface_number = -1;
+	Raycal->IsInfinite = true;
+	Raycal->U0_D0 = 10;
+	Raycal->Y0_W0 = 0;
+	Raycal->Ln = 1E15;
+	Raycal->Un = 0;
+
+	f_image = 1;
+
+	for (i = 0;i <= ray0->all_surface_number;i++) {
+		Raycal = Paraxial_single_surface(Raycal, Radius, Distance, Re_Index);
+		if (i < ray0->all_surface_number)
+			f_image = f_image * (Raycal->Ln + Distance[Raycal->now_surface_number]) / (Raycal->Ln);
+		else
+			f_image = f_image * Raycal->Ln;
+	}
+//2.像方主面的位置
+	l_H_image = l_F_image - f_image;
+
+//
 }
 

@@ -11,7 +11,9 @@ int main(void) {
 	struct Ray ray0;
 	double Radius[100], Distance[100], Re_Index[100];
 
-	InitialFromFile(&ray0,Radius,Distance,Re_Index);
+	//初始化
+	Initial(&ray0,Radius,Distance,Re_Index);
+	//近轴光计算
 	Paraxial_calculation(&ray0, Radius, Distance, Re_Index);
 
 	return 0;
