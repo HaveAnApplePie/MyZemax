@@ -12,7 +12,7 @@ struct Ray
 	int 	now_surface_number;	//已经过的面
 	int		all_surface_number;	//总的面数
 	int 	Wavelen;			//波长
-	int		A0;					//入瞳半径
+	double	A0;					//入瞳半径
 	double	L0;					//初始物距
 	double 	U0_D0;				//初始物方半孔径角或入瞳直径
 	double	Y0_W0;				//物高或半视场角   

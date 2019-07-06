@@ -42,6 +42,7 @@ void InitialFromFile(struct Ray*Ray0 , double Radius[], double Distance[], doubl
 		fscanf(fw, "%lf", &Re_Index[i]);
 	}
 
+	fscanf(fw, "%lf", &Ray0->A0);
 }
 
 void InitialFromScreen(struct Ray*Ray0, double Radius[], double Distance[], double Re_Index[])
@@ -75,6 +76,8 @@ void InitialFromScreen(struct Ray*Ray0, double Radius[], double Distance[], doub
 	for (i = 0;i<k + 1;i++) {
 		scanf("%lf", &Re_Index[i]);
 	}
+
+	scanf("%lf", &Ray0->A0);
 }
 
 
@@ -88,4 +91,6 @@ void Initial(struct Ray*Ray0, double Radius[], double Distance[], double Re_Inde
 		InitialFromScreen(Ray0, Radius, Distance, Re_Index);
 	else
 		printf("Error!");
+
+	scanf("%lf", &Ray0->A0);
 }
