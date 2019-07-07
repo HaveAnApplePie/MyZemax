@@ -1,7 +1,7 @@
 #include"Ray_Point.h"
 #include<math.h>
 
-#define PI 3.1415927
+
 
 Ray FirstParaxialLight(struct Ray*Ray0)							//第一近轴光线计算
 {
@@ -74,8 +74,6 @@ Ray* Paraxial_single_surface(struct Ray *ray_in,double Radius[],double Distance[
 
 	return	ray_in;
 }
-
-
 
 void Paraxial_calculation(struct Ray *ray0, double Radius[], double Distance[], double Re_Index[]) {
 	int i,j,k,n;

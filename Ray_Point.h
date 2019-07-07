@@ -5,6 +5,7 @@
 #define	C_RAY		1
 #define	F_RAY		2
 #define INFINITE 	1E12
+#define PI			3.1415927;
 
 struct Ray
 {
@@ -25,8 +26,8 @@ struct Ray
 
 struct Point					//相对于最后一个面与主轴的交点
 {
-	double 	X;				
-	double 	Y;				
+	double 	X;
+	double 	Y;
 };
 
 #endif

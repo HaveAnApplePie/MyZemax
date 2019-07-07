@@ -147,6 +147,7 @@
     <ClCompile Include="Initial.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Paraxial.cpp" />
+    <ClCompile Include="RealRay.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
