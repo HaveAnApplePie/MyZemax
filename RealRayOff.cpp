@@ -14,7 +14,7 @@ Ray RealRayOff(double Kw, double Kn, struct Ray*Ray0)			//计算轴外点实际光
 	}
 	else {
 		RayRealOff.Ln = Kn* Ray0->A0/tan(Ray0->U0_D0);
-		RayRealOff.Un = atan((Kw*Ray0->Y0_W0-Kn* Ray0->A0)/ (0 - Ray0->L0));
+		RayRealOff.Un = atan((Kw*Ray0->Y0_W0-Kn* Ray0->A0)/ (0 - Ray0->L0))*180/PI;
 	}
 
 	return RayRealOff;

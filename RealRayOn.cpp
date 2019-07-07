@@ -14,7 +14,7 @@ Ray RealRayOn(double Kw, double Kn, struct Ray*Ray0)			//计算轴上点实际光
 	}
 	else {
 		RayRealOn.Ln = Ray0->L0;
-		RayRealOn.Un = asin(Kn*sin(Ray0->U0_D0*PI/ 180));
+		RayRealOn.Un = asin(Kn*sin(Ray0->U0_D0*PI/ 180))*180/PI;
 	}
 
 	return RayRealOn;
