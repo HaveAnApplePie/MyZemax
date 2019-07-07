@@ -36,6 +36,7 @@ Ray* NarrowBeam_single_surface(struct Ray *ray_in,double Radius[], double Distan
 	double r, d, D, H, PA, n1, n2, x1, x2;
 	double u1, i1, l1, t1, s1;
 	double u2, i2, l2, t2, s2;
+	double i2_1;
 //===========初始化============
 	l1 = ray_in->Ln;
 	u1 = ray_in->Un;
@@ -67,11 +68,12 @@ Ray* NarrowBeam_single_surface(struct Ray *ray_in,double Radius[], double Distan
 	ray_out.Ln = l2 - d;
 	ray_out.Un = u2;
 	if (k < ray_in->all_surface_number) {
-		PA = l1 * sin(PI*u1/180) / cos(0.5*(i1 - u1)*PI / 180);
-		x1 = PA * PA / 2 * r;
-		PA = ray_out.Ln* sin(PI*u2/180) / cos(0.5*(ray_out.Ln - u2)*PI / 180);
-		x2 = PA * PA / 2 * Radius[k + 1];
-		D = d - x1 + x2 / cos(PI*u2 / 180);
+		PA = (l1 * sin(PI*u1/180)) / cos(0.5*(i1 - u1)*PI / 180);
+		x1 = (PA * PA) / (2 * r);
+		i2_1 = asin((ray_out.Ln - Radius[k + 1]) / Radius[k + 1] * sin(PI*u2 / 180)) * 180 / PI;
+		PA = ray_out.Ln* sin(PI*u2/180) / cos(0.5*(i2_1 - u2)*PI / 180);
+		x2 =(PA * PA) / (2 * Radius[k + 1]);
+		D = (d - x1 + x2) / cos(PI*u2 / 180);
 	}
 	else
 		D = 0;
@@ -90,6 +92,7 @@ void NarrowBeam_calculation(struct Ray*ray0, double Radius[], double Distance[],
 {
 	int i, j, k, n;
 	double Kw, Kn, delta_x;
+	double l_t_image, l_s_image, x;
 	Ray Rayinit, *Raycal;
 
 //=============初始化==========
@@ -103,5 +106,9 @@ void NarrowBeam_calculation(struct Ray*ray0, double Radius[], double Distance[],
 		Raycal = NarrowBeam_single_surface(Raycal, Radius, Distance, Re_Index, Kn);
 	}
 	delta_x = (Raycal->T - Raycal->S)*cos(Raycal->Un*PI / 180);
-
+	//x=PA*PA/
+//子午场曲
+	l_t_image = Raycal->T*cos(Raycal->Un*PI / 180) + x;
+//弧矢场曲
+	l_s_image = Raycal->S*cos(Raycal->Un*PI / 180) + x;
 }
