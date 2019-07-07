@@ -91,6 +91,4 @@ void Initial(struct Ray*Ray0, double Radius[], double Distance[], double Re_Inde
 		InitialFromScreen(Ray0, Radius, Distance, Re_Index);
 	else
 		printf("Error!");
-
-	scanf("%lf", &Ray0->A0);
 }
