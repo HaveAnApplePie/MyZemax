@@ -17,5 +17,7 @@ int main(void) {
 	Paraxial_calculation(&ray0, Radius, Distance, Re_Index);
 	//实际光计算
 	RealRay_calculation(&ray0, Radius, Distance, Re_Index);
+	//细光束计算
+	NarrowBeam_calculation(&ray0, Radius, Distance, Re_Index);
 	return 0;
 }

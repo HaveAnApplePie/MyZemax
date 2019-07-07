@@ -15,5 +15,10 @@ Ray RealRayOn(double Kw, double Kn, struct Ray*Ray0);
 Ray* RealRay_single_surface(struct Ray *ray_in, double Radius[], double Distance[], double Re_Index[], double Kn);
 void RealRay_calculation(struct Ray *ray0, double Radius[], double Distance[], double Re_Index[]);
 
+//Ï¸¹âÊø
+Ray InitialNarrowBeam(struct Ray*ray0, double Radius[], double Kw, double Kn);
+Ray* NarrowBeam_single_surface(struct Ray *ray_in, double Radius[], double Distance[], double Re_Index[], double Kn);
+void NarrowBeam_calculation(struct Ray*ray0, double Radius[], double Distance[], double Re_Index[]);
+
 
 #endif

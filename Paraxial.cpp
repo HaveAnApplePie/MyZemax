@@ -77,7 +77,7 @@ Ray* Paraxial_single_surface(struct Ray *ray_in,double Radius[],double Distance[
 
 void Paraxial_calculation(struct Ray *ray0, double Radius[], double Distance[], double Re_Index[]) {
 	int i,j,k,n;
-	double f_image,l_F_image,l_H_image;
+	double f_image, l_F_image, l_H_image, y_image_inifit, image_inifit, y_image_limit, image_limit, l_image;
 	Ray RayFPL,RaySPL,*Raycal;	//Raycal是用于计算的光线
 
 //=============初始化==========
@@ -118,6 +118,61 @@ void Paraxial_calculation(struct Ray *ray0, double Radius[], double Distance[], 
 //2.像方主面的位置
 	l_H_image = l_F_image - f_image;
 
-//
+//3.理想像高(无穷远物）
+	Raycal->now_surface_number = -1;
+	Raycal->IsInfinite = true;
+	Raycal->U0_D0 = 10;
+	Raycal->Y0_W0 = 3;
+	Raycal->Ln = 1E15;
+	Raycal->Un = 3;
+
+	for (i = 0; i <= ray0->all_surface_number; i++) {
+
+		Raycal = Paraxial_single_surface(Raycal, Radius, Distance, Re_Index);
+	}
+
+	y_image_inifit = (Raycal->Ln - l_F_image)*tan(Raycal->Un / 180 * PI);
+
+	Raycal->now_surface_number = -1;
+	Raycal->IsInfinite = true;
+	Raycal->U0_D0 = 10;
+	Raycal->Y0_W0 = 2.1;
+	Raycal->Ln = 1E15;
+	Raycal->Un = 2.1;
+
+	for (i = 0; i <= ray0->all_surface_number; i++) {
+
+		Raycal = Paraxial_single_surface(Raycal, Radius, Distance, Re_Index);
+	}
+
+	image_inifit = (Raycal->Ln - l_F_image)*tan(Raycal->Un / 180 * PI);
+	//4.理想像高（有限远物）
+	Raycal->now_surface_number = -1;
+	Raycal->IsInfinite = false;
+	Raycal->U0_D0 = 3;
+	Raycal->Y0_W0 = 26;
+	Raycal->Ln = 500;
+	Raycal->Un = 3;
+
+	for (i = 0; i <= ray0->all_surface_number; i++) {
+
+		Raycal = Paraxial_single_surface(Raycal, Radius, Distance, Re_Index);
+	}
+
+	y_image_limit = (Raycal->Ln - l_F_image)*tan(Raycal->Un / 180 * PI);
+
+	Raycal->now_surface_number = -1;
+	Raycal->IsInfinite = false;
+	Raycal->U0_D0 = 2.1;
+	Raycal->Y0_W0 = 18.2;
+	Raycal->Ln = 500;
+	Raycal->Un = 2.1;
+
+	for (i = 0; i <= ray0->all_surface_number; i++) {
+
+		Raycal = Paraxial_single_surface(Raycal, Radius, Distance, Re_Index);
+	}
+
+	image_limit = (Raycal->Ln - l_F_image)*tan(Raycal->Un / 180 * PI);
 }
 

@@ -38,5 +38,8 @@
     <ClCompile Include="RealRay.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="NarrowBeam.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

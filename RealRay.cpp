@@ -60,7 +60,7 @@ Ray* RealRay_single_surface(struct Ray *ray_in, double Radius[], double Distance
 
 	ray_out = *ray_in;
 //===========公式计算===========
-	if (ray_in->IsInfinite == true && k == 0) {
+	if (ray_in->IsInfinite == true && k == 0 && Kn!=0) {//无穷远平行光
 		H = Kn * ray_in->A0;
 		i1 = asin(H / r)*180/PI;
 	}
@@ -88,6 +88,15 @@ void RealRay_calculation(struct Ray *ray0, double Radius[], double Distance[], d
 	n = ray0->all_surface_number;
 
 
+//===========test===========
+//1视场 0孔径
+	Kw = 1;
+	Kn = 0;
+	RayOff = RealRayOff(Kw, Kn, ray0);
+	Raycal = &RayOff;
+	for (i = 0;i <= ray0->all_surface_number;i++) {
+		Raycal = RealRay_single_surface(Raycal, Radius, Distance, Re_Index, Kn);
+	}
 //===========实际像位置=========
 //1.0视场 1孔径
 	Kw = 0;

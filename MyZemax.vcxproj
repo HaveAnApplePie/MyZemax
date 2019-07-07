@@ -146,6 +146,7 @@
   <ItemGroup>
     <ClCompile Include="Initial.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NarrowBeam.cpp" />
     <ClCompile Include="Paraxial.cpp" />
     <ClCompile Include="RealRay.cpp" />
   </ItemGroup>
