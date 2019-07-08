@@ -1,4 +1,6 @@
-void ParaxialLight(struct Ray*Ray0)								//第一近轴光线计算
+#include"Ray_Point.h"
+#include<math.h>
+Ray ParaxialLight(struct Ray*Ray0)								//第一近轴光线计算
 {
 	struct Ray RayFPL;											//定义第一近轴光线
 	struct Ray RaySPL;											//定义第二近轴光线

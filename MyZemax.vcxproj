@@ -139,6 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Calcultion.h" />
+    <ClInclude Include="Initial.h" />
+    <ClInclude Include="Ray_Point.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Initial.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="NarrowBeam.cpp" />
+    <ClCompile Include="Paraxial.cpp" />
+    <ClCompile Include="RealRay.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
